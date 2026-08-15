@@ -1,0 +1,1139 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
+<title>AI Business Automation Agency — @Dasceem</title>
+<style>
+:root {
+  --bg: #f5f5f7;
+  --card: #ffffff;
+  --text: #1c1c1e;
+  --text2: #636366;
+  --text3: #8e8e93;
+  --border: rgba(0,0,0,0.06);
+  --accent: #007aff;
+  --accent2: #34c759;
+  --danger: #ff3b30;
+  --orange: #ff9500;
+  --purple: #af52de;
+  --radius: 20px;
+  --radius-sm: 14px;
+  --shadow-sm: 0 2px 12px rgba(0,0,0,0.06);
+  --shadow-md: 0 8px 30px rgba(0,0,0,0.08);
+}
+* { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+html, body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  background: var(--bg); color: var(--text);
+  line-height: 1.5; overflow-x: hidden;
+  height: 100%;
+}
+.app { 
+  max-width: 430px; 
+  margin: 0 auto; 
+  min-height: 100vh; 
+  background: var(--bg); 
+  position: relative; 
+}
+.view { 
+  display: none; 
+  min-height: 100vh; 
+  flex-direction: column; 
+  animation: fadeIn 0.4s ease; 
+}
+.view.active { display: flex; }
+.view-scroll { 
+  flex: 1; 
+  overflow-y: auto; 
+  -webkit-overflow-scrolling: touch; 
+  padding-bottom: 90px; 
+}
+@keyframes fadeIn { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes slideUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
+@keyframes pop { 0% { transform: scale(0.85); } 60% { transform: scale(1.08); } 100% { transform: scale(1); } }
+@keyframes pulse { 0%,100% { box-shadow: 0 0 0 0 rgba(0,122,255,0.4); } 50% { box-shadow: 0 0 0 12px rgba(0,122,255,0); } }
+
+.hero { padding: 32px 20px 20px; text-align: center; background: linear-gradient(180deg, #fff 0%, var(--bg) 100%); position: relative; }
+.hero::before { content: ''; position: absolute; top: -60px; right: -60px; width: 200px; height: 200px; background: radial-gradient(circle, rgba(0,122,255,0.08) 0%, transparent 70%); border-radius: 50%; pointer-events: none; }
+.hero::after { content: ''; position: absolute; bottom: 20px; left: -40px; width: 140px; height: 140px; background: radial-gradient(circle, rgba(175,82,222,0.06) 0%, transparent 70%); border-radius: 50%; pointer-events: none; }
+.hero-badge { display: inline-flex; align-items: center; gap: 6px; padding: 7px 18px; background: rgba(0,122,255,0.08); border-radius: 24px; font-size: 12px; font-weight: 700; color: var(--accent); margin-bottom: 18px; border: 1px solid rgba(0,122,255,0.12); }
+.hero-title { font-size: 32px; font-weight: 800; line-height: 1.08; margin-bottom: 14px; letter-spacing: -0.6px; }
+.hero-sub { font-size: 16px; color: var(--text2); line-height: 1.5; margin-bottom: 20px; max-width: 320px; margin-left: auto; margin-right: auto; }
+.hero-btn { padding: 17px 36px; background: linear-gradient(135deg, #007aff 0%, #0051d5 100%); color: #fff; border: none; border-radius: var(--radius-sm); font-size: 16px; font-weight: 700; cursor: pointer; font-family: inherit; box-shadow: 0 6px 24px rgba(0,122,255,0.3); transition: all 0.2s; position: relative; overflow: hidden; }
+.hero-btn::after { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent); transition: left 0.5s; }
+.hero-btn:hover::after { left: 100%; }
+.hero-btn:active { transform: scale(0.96); box-shadow: 0 3px 12px rgba(0,122,255,0.25); }
+
+.stats-row { display: flex; justify-content: center; gap: 24px; margin-top: 8px; padding: 0 16px; }
+.stat-item { text-align: center; }
+.stat-num { font-size: 26px; font-weight: 800; color: var(--text); letter-spacing: -0.5px; }
+.stat-label { font-size: 12px; color: var(--text3); font-weight: 600; margin-top: 2px; }
+
+.section { padding: 16px 16px 8px; }
+.section-label { font-size: 11px; font-weight: 700; color: var(--text3); text-transform: uppercase; letter-spacing: 1.2px; margin-bottom: 16px; padding-left: 4px; }
+
+.service-row { display: flex; gap: 14px; align-items: flex-start; padding: 20px 16px; border-radius: var(--radius-sm); background: var(--card); margin-bottom: 12px; box-shadow: var(--shadow-sm); transition: all 0.2s; border: 1px solid transparent; }
+.service-row:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); border-color: rgba(0,122,255,0.08); }
+.service-row:active { transform: scale(0.98); }
+.service-icon { font-size: 28px; flex-shrink: 0; margin-top: 2px; width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, var(--bg), #fff); border-radius: 14px; box-shadow: inset 0 1px 3px rgba(0,0,0,0.04); }
+.service-name { font-size: 16px; font-weight: 700; }
+.service-desc { font-size: 14px; color: var(--text2); line-height: 1.45; margin-top: 4px; }
+
+.case-card { padding: 20px 16px; border-radius: var(--radius-sm); margin-bottom: 14px; background: var(--card); cursor: pointer; box-shadow: var(--shadow-sm); transition: all 0.25s; border: 1px solid transparent; position: relative; overflow: hidden; }
+.case-card::before { content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: linear-gradient(180deg, var(--accent), var(--purple)); opacity: 0; transition: opacity 0.25s; }
+.case-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); border-color: rgba(0,122,255,0.08); }
+.case-card:hover::before { opacity: 1; }
+.case-card:active { transform: scale(0.98); }
+.case-header { display: flex; align-items: center; gap: 14px; margin-bottom: 14px; }
+.case-icon { font-size: 28px; width: 52px; height: 52px; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, var(--bg), #fff); border-radius: 16px; box-shadow: inset 0 1px 3px rgba(0,0,0,0.04); }
+.case-info { flex: 1; }
+.case-name { font-size: 17px; font-weight: 700; }
+.case-type { font-size: 13px; color: var(--text3); margin-top: 3px; }
+.case-arrow { font-size: 20px; color: var(--text3); transition: transform 0.2s; }
+.case-card:hover .case-arrow { transform: translateX(4px); color: var(--accent); }
+.case-tags { display: flex; gap: 8px; flex-wrap: wrap; }
+.tag { padding: 5px 12px; background: var(--bg); border-radius: 8px; font-size: 12px; color: var(--text2); font-weight: 600; transition: all 0.15s; pointer-events: none; user-select: none; -webkit-user-select: none; }
+.case-card:hover .tag { background: rgba(0,122,255,0.06); color: var(--accent); }
+
+
+.pricing-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
+.pricing-card:active { transform: scale(0.98); }
+
+
+
+
+
+
+
+
+
+.pricing-card.dark 
+
+.steps { display: flex; flex-direction: column; gap: 18px; }
+.step { display: flex; align-items: center; gap: 16px; }
+.step-num { width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(135deg, var(--text), #434343); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 700; flex-shrink: 0; box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
+.step-text { font-size: 15px; color: var(--text2); font-weight: 500; line-height: 1.4; }
+
+.review-card { padding: 20px 16px; border-radius: var(--radius-sm); background: var(--card); box-shadow: var(--shadow-sm); margin-bottom: 12px; border: 1px solid var(--border); transition: all 0.2s; }
+.review-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
+.review-stars { color: var(--orange); font-size: 14px; margin-bottom: 8px; letter-spacing: 1px; }
+.review-text { font-size: 14px; color: var(--text2); line-height: 1.55; margin-bottom: 10px; }
+.review-author { font-size: 13px; font-weight: 700; color: var(--text); }
+.review-role { font-size: 12px; color: var(--text3); font-weight: 500; }
+
+.cta-section { padding: 40px 20px; text-align: center; margin-top: 8px; background: linear-gradient(180deg, var(--bg) 0%, #fff 100%); position: relative; }
+.cta-section::before { content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 60px; height: 4px; background: linear-gradient(90deg, var(--accent), var(--purple)); border-radius: 2px; }
+.cta-title { font-size: 24px; font-weight: 800; margin-bottom: 10px; }
+.cta-sub { font-size: 15px; color: var(--text2); margin-bottom: 24px; }
+.cta-btn { padding: 17px 40px; background: linear-gradient(135deg, #007aff 0%, #0051d5 100%); color: #fff; border: none; border-radius: var(--radius-sm); font-size: 16px; font-weight: 700; cursor: pointer; font-family: inherit; box-shadow: 0 6px 24px rgba(0,122,255,0.3); transition: all 0.2s; display: inline-flex; align-items: center; gap: 8px; }
+.cta-btn:active { transform: scale(0.96); }
+
+.tg-float { position: fixed; bottom: 90px; right: 16px; z-index: 50; width: 56px; height: 56px; border-radius: 50%; background: linear-gradient(135deg, #0088cc, #0099e6); color: #fff; border: none; font-size: 24px; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 6px 24px rgba(0,136,204,0.35); animation: pulse 2s infinite; transition: transform 0.2s; font-family: inherit; }
+.tg-float:active { transform: scale(0.92); }
+
+.footer { padding: 32px 16px 48px; text-align: center; border-top: 1px solid var(--border); background: #fff; }
+.footer-text { font-size: 15px; font-weight: 700; }
+.footer-sub { font-size: 13px; color: var(--text3); margin-top: 8px; line-height: 1.5; }
+.footer-tg { display: inline-flex; align-items: center; gap: 6px; margin-top: 12px; padding: 10px 20px; background: rgba(0,136,204,0.08); border-radius: 20px; color: #0088cc; font-size: 14px; font-weight: 700; text-decoration: none; border: 1px solid rgba(0,136,204,0.15); transition: all 0.2s; }
+.footer-tg:hover { background: rgba(0,136,204,0.12); transform: translateY(-1px); }
+
+.demo-header { padding: 14px 16px; text-align: center; border-bottom: 1px solid var(--border); background: rgba(255,255,255,0.9); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); position: sticky; top: 0; z-index: 5; display: flex; align-items: center; justify-content: center; gap: 8px; }
+.demo-back { position: absolute; left: 12px; width: 44px; height: 44px; border-radius: 50%; font-size: 20px; cursor: pointer; color: var(--text); background: var(--bg); border: none; font-family: inherit; display: flex; align-items: center; justify-content: center; transition: all 0.15s; box-shadow: 0 1px 4px rgba(0,0,0,0.06); }
+.demo-back:active { background: #e5e5ea; transform: scale(0.92); }
+.demo-title { font-size: 17px; font-weight: 700; }
+.demo-sub { font-size: 12px; color: var(--text3); }
+.demo-screen { display: none; padding: 16px; animation: fadeIn 0.3s ease; }
+.demo-screen.active { display: block; }
+.demo-section-title { font-size: 19px; font-weight: 700; margin-bottom: 16px; padding-left: 2px; }
+.bottom-nav { display: flex; justify-content: space-around; padding: 10px 0 24px; border-top: 1px solid var(--border); position: fixed; bottom: 0; left: 0; right: 0; background: rgba(255,255,255,0.92); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); max-width: 430px; margin: 0 auto; z-index: 40; }
+.nav-item { display: flex; flex-direction: column; align-items: center; gap: 3px; cursor: pointer; color: var(--text3); font-size: 11px; transition: color 0.2s; flex: 1; font-weight: 600; padding: 6px 0; }
+.nav-item.active { color: var(--accent); }
+.nav-item svg { stroke-width: 1.8; }
+
+.service-card { display: flex; justify-content: space-between; align-items: center; padding: 18px 16px; border-radius: var(--radius-sm); margin-bottom: 12px; cursor: pointer; background: var(--card); box-shadow: var(--shadow-sm); transition: all 0.2s; border: 1px solid transparent; }
+.service-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); border-color: rgba(0,122,255,0.08); }
+.service-card:active { transform: scale(0.98); }
+.s-name { font-size: 16px; font-weight: 700; }
+.s-desc { font-size: 12px; color: var(--text3); margin-top: 3px; }
+.s-price { font-size: 16px; font-weight: 700; white-space: nowrap; margin-left: 10px; color: var(--accent); }
+.form-group { margin-bottom: 18px; }
+.form-group label { display: block; font-size: 13px; font-weight: 600; color: var(--text2); margin-bottom: 7px; padding-left: 2px; }
+.form-group input, .form-group select { width: 100%; padding: 14px 16px; border: 1.5px solid var(--border); border-radius: var(--radius-sm); font-size: 16px; background: var(--card); color: var(--text); font-family: inherit; -webkit-appearance: none; transition: all 0.2s; }
+.form-group input:focus, .form-group select:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px rgba(0,122,255,0.08); }
+.time-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+.time-slot { padding: 13px 0; text-align: center; border: 1.5px solid var(--border); border-radius: 12px; font-size: 13px; font-weight: 600; cursor: pointer; background: var(--card); transition: all 0.15s; }
+.time-slot.selected { background: var(--accent); color: #fff; border-color: var(--accent); box-shadow: 0 2px 10px rgba(0,122,255,0.25); }
+.time-slot:hover:not(.selected) { border-color: var(--accent); color: var(--accent); }
+.btn-p { width: 100%; padding: 17px; background: linear-gradient(135deg, #007aff 0%, #0051d5 100%); color: #fff; border: none; border-radius: var(--radius-sm); font-size: 16px; font-weight: 700; cursor: pointer; margin-top: 12px; font-family: inherit; box-shadow: 0 6px 20px rgba(0,122,255,0.25); transition: all 0.2s; }
+.btn-p:active { transform: scale(0.97); box-shadow: 0 3px 12px rgba(0,122,255,0.2); }
+.success-msg { display: none; text-align: center; padding: 18px; margin-top: 8px; font-size: 14px; font-weight: 600; color: var(--accent2); background: #e8f5e9; border-radius: var(--radius-sm); animation: pop 0.35s ease; }
+.faq-item { border-radius: var(--radius-sm); margin-bottom: 12px; overflow: hidden; cursor: pointer; background: var(--card); box-shadow: var(--shadow-sm); transition: all 0.2s; border: 1px solid transparent; }
+.faq-item:hover { border-color: rgba(0,122,255,0.08); }
+.faq-item:active { transform: scale(0.99); }
+.faq-q { padding: 18px 16px; font-size: 15px; font-weight: 600; display: flex; justify-content: space-between; align-items: center; }
+.faq-arr { font-size: 12px; color: var(--text3); transition: transform 0.3s; }
+.faq-item.open .faq-arr { transform: rotate(180deg); color: var(--accent); }
+.faq-a { display: none; padding: 0 16px 18px; font-size: 14px; color: var(--text2); line-height: 1.6; }
+.faq-item.open .faq-a { display: block; animation: fadeIn 0.25s ease; }
+.contact-block { margin-top: 8px; padding: 22px 18px; border-radius: var(--radius-sm); text-align: center; background: var(--card); box-shadow: var(--shadow-sm); border: 1px solid var(--border); }
+.contact-title { font-size: 16px; font-weight: 700; }
+.contact-text { font-size: 13px; color: var(--text3); margin: 8px 0 16px; }
+.btn-o { width: 100%; padding: 15px; background: transparent; color: var(--text); border: 1.5px solid var(--border); border-radius: var(--radius-sm); font-size: 15px; font-weight: 600; cursor: pointer; font-family: inherit; transition: all 0.15s; }
+.btn-o:hover { background: var(--bg); border-color: var(--text3); }
+.btn-o:active { background: var(--bg); transform: scale(0.98); }
+.detail-modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.4); align-items: flex-end; justify-content: center; z-index: 60; max-width: 430px; margin: 0 auto; opacity: 0; transition: opacity 0.3s; }
+.detail-modal.show { display: flex; opacity: 1; }
+.detail-card { background: var(--card); width: 100%; padding: 32px 22px 28px; border-radius: var(--radius) var(--radius) 0 0; position: relative; animation: slideUp 0.35s cubic-bezier(0.16, 1, 0.3, 1); box-shadow: 0 -10px 40px rgba(0,0,0,0.1); }
+.detail-close { position: absolute; top: 16px; right: 18px; width: 44px; height: 44px; border-radius: 50%; background: var(--bg); font-size: 16px; cursor: pointer; color: var(--text3); display: flex; align-items: center; justify-content: center; border: none; font-family: inherit; transition: all 0.15s; }
+.detail-close:active { background: #e5e5ea; transform: scale(0.9); }
+.detail-title { font-size: 24px; font-weight: 800; margin-bottom: 12px; }
+.detail-meta { display: flex; gap: 16px; margin-bottom: 16px; align-items: center; }
+.d-price { font-size: 18px; font-weight: 700; color: var(--accent); }
+.d-time { font-size: 13px; color: var(--text3); font-weight: 500; }
+.d-desc { font-size: 15px; color: var(--text2); line-height: 1.6; margin-bottom: 28px; }
+
+.schedule-card { display: flex; align-items: center; gap: 14px; padding: 16px; border-radius: var(--radius-sm); margin-bottom: 12px; background: var(--card); box-shadow: var(--shadow-sm); transition: all 0.2s; border: 1px solid transparent; }
+.schedule-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); border-color: rgba(0,122,255,0.08); }
+.schedule-card:active { transform: scale(0.98); }
+.sc-time { font-size: 14px; font-weight: 700; min-width: 48px; color: var(--accent); }
+.sc-info { flex: 1; }
+.sc-name { font-size: 15px; font-weight: 600; }
+.sc-meta { font-size: 12px; color: var(--text3); margin-top: 3px; font-weight: 500; }
+.btn-s { padding: 9px 16px; background: var(--accent); color: #fff; border: none; border-radius: 10px; font-size: 12px; font-weight: 700; cursor: pointer; font-family: inherit; white-space: nowrap; transition: all 0.2s; box-shadow: 0 2px 8px rgba(0,122,255,0.2); }
+.btn-s:active { transform: scale(0.94); }
+.btn-s.booked { background: var(--accent2); box-shadow: 0 2px 8px rgba(52,199,89,0.2); }
+.trainer-card { display: flex; align-items: center; gap: 14px; padding: 16px; border-radius: var(--radius-sm); margin-bottom: 12px; cursor: pointer; background: var(--card); box-shadow: var(--shadow-sm); transition: all 0.2s; border: 1px solid transparent; }
+.trainer-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); border-color: rgba(0,122,255,0.08); }
+.trainer-card:active { transform: scale(0.98); }
+.t-ava { width: 52px; height: 52px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 26px; background: linear-gradient(135deg, var(--bg), #fff); box-shadow: inset 0 1px 3px rgba(0,0,0,0.04); }
+.t-info { flex: 1; }
+.t-name { font-size: 16px; font-weight: 700; }
+.t-spec { font-size: 12px; color: var(--text3); font-weight: 500; }
+.t-exp { font-size: 12px; color: #c7c7cc; font-weight: 500; }
+.t-price { font-size: 16px; font-weight: 700; white-space: nowrap; color: var(--accent); }
+.pass-block { margin-top: 8px; }
+.pass-card { padding: 16px; border-radius: var(--radius-sm); margin-bottom: 12px; background: var(--card); box-shadow: var(--shadow-sm); transition: all 0.2s; border: 1px solid transparent; }
+.pass-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); border-color: rgba(0,122,255,0.08); }
+.pass-card:active { transform: scale(0.98); }
+.pass-name { font-size: 15px; font-weight: 700; }
+.pass-price { font-size: 20px; font-weight: 700; margin-top: 6px; color: var(--accent); }
+.pass-old { font-size: 13px; color: var(--text3); text-decoration: line-through; margin-left: 8px; font-weight: 500; }
+.pass-desc { font-size: 12px; color: var(--text3); margin-top: 4px; font-weight: 500; }
+.d-price-big { font-size: 28px; font-weight: 800; margin-bottom: 28px; color: var(--accent); }
+
+.cat-tabs { display: flex; gap: 8px; margin-bottom: 16px; overflow-x: auto; padding-bottom: 4px; }
+.cat-tab { padding: 9px 18px; border: 1.5px solid var(--border); border-radius: 20px; font-size: 13px; font-weight: 600; cursor: pointer; white-space: nowrap; color: var(--text2); background: var(--card); font-family: inherit; transition: all 0.2s; }
+.cat-tab.active { background: var(--accent); color: #fff; border-color: var(--accent); box-shadow: 0 2px 10px rgba(0,122,255,0.2); }
+.cat-tab:hover:not(.active) { border-color: var(--accent); color: var(--accent); }
+.menu-item { display: flex; align-items: center; gap: 14px; padding: 16px; border-radius: var(--radius-sm); margin-bottom: 12px; background: var(--card); box-shadow: var(--shadow-sm); transition: all 0.2s; border: 1px solid transparent; }
+.menu-item:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); border-color: rgba(0,122,255,0.08); }
+.menu-item:active { transform: scale(0.98); }
+.m-img { width: 56px; height: 56px; border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 28px; background: linear-gradient(135deg, var(--bg), #fff); flex-shrink: 0; box-shadow: inset 0 1px 3px rgba(0,0,0,0.04); }
+.m-info { flex: 1; }
+.m-name { font-size: 15px; font-weight: 700; }
+.m-desc { font-size: 12px; color: var(--text3); margin-top: 2px; font-weight: 500; }
+.m-price { font-size: 15px; font-weight: 700; margin-top: 4px; color: var(--accent); }
+.m-add { width: 44px; height: 44px; border-radius: 50%; border: none; background: var(--accent); color: #fff; font-size: 20px; cursor: pointer; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-family: inherit; box-shadow: 0 2px 10px rgba(0,122,255,0.25); transition: all 0.15s; }
+.m-add:active { transform: scale(0.88); }
+.cart-empty { text-align: center; padding: 60px 20px; color: var(--text3); font-size: 14px; font-weight: 500; }
+.cart-item { display: flex; align-items: center; gap: 14px; padding: 16px; border-radius: var(--radius-sm); margin-bottom: 12px; background: var(--card); box-shadow: var(--shadow-sm); }
+.ci-info { flex: 1; }
+.ci-name { font-size: 15px; font-weight: 700; }
+.ci-price { font-size: 13px; color: var(--text3); font-weight: 500; }
+.cq { display: flex; align-items: center; gap: 10px; }
+.qb { width: 38px; height: 38px; border-radius: 50%; border: 1.5px solid var(--border); background: var(--card); cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 18px; font-family: inherit; font-weight: 600; transition: all 0.15s; }
+.qb:active { background: var(--bg); transform: scale(0.9); }
+.cart-total { margin-top: 20px; padding: 20px; border-radius: var(--radius-sm); background: var(--card); box-shadow: var(--shadow-sm); }
+.tr { display: flex; justify-content: space-between; font-size: 14px; margin-bottom: 10px; color: var(--text2); font-weight: 500; }
+.tf { font-size: 20px; font-weight: 800; color: var(--text); margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--border); }
+.loyalty-card { padding: 22px; border-radius: var(--radius-sm); background: var(--card); box-shadow: var(--shadow-sm); border: 1px solid var(--border); }
+.lh { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
+.lt { font-size: 19px; font-weight: 700; }
+.ls { font-size: 15px; font-weight: 700; color: var(--accent); }
+.pb { height: 10px; background: var(--bg); border-radius: 5px; overflow: hidden; }
+.pf { height: 100%; background: linear-gradient(90deg, var(--accent), var(--purple)); border-radius: 5px; transition: width 0.4s; }
+.pt { font-size: 13px; color: var(--text3); margin-top: 12px; font-weight: 500; }
+.promo-card { display: flex; align-items: center; gap: 14px; padding: 16px; border-radius: var(--radius-sm); margin-bottom: 12px; background: var(--card); box-shadow: var(--shadow-sm); transition: all 0.2s; border: 1px solid transparent; }
+.promo-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); border-color: rgba(0,122,255,0.08); }
+.promo-tag { padding: 6px 14px; background: linear-gradient(135deg, var(--accent), var(--purple)); color: #fff; border-radius: 8px; font-size: 12px; font-weight: 700; white-space: nowrap; box-shadow: 0 2px 8px rgba(0,122,255,0.2); }
+.promo-text { font-size: 14px; color: var(--text2); font-weight: 500; }
+.cart-badge { display: none; position: fixed; top: 60px; right: 16px; min-width: 26px; height: 26px; padding: 0 7px; background: var(--danger); color: #fff; border-radius: 13px; font-size: 12px; font-weight: 700; align-items: center; justify-content: center; z-index: 30; cursor: pointer; max-width: 430px; box-shadow: 0 2px 10px rgba(255,59,48,0.3); animation: pop 0.35s ease; }
+
+@media (hover: hover) {
+  .hero-btn:hover, .cta-btn:hover, .btn-p:hover { transform: translateY(-1px); }
+}
+
+/* ===== TIMER ===== */
+.timer-block { margin: 14px 16px 0; padding: 16px 20px; background: linear-gradient(135deg, rgba(255,59,48,0.06), rgba(255,149,0,0.06)); border-radius: var(--radius-sm); border: 1px solid rgba(255,59,48,0.12); }
+.timer-label { font-size: 13px; font-weight: 600; color: var(--danger); margin-bottom: 10px; }
+.timer-row { display: flex; justify-content: center; gap: 12px; }
+.timer-cell { text-align: center; min-width: 56px; }
+.timer-val { font-size: 28px; font-weight: 800; color: var(--danger); line-height: 1; letter-spacing: -1px; }
+.timer-unit { font-size: 11px; color: var(--text3); font-weight: 600; margin-top: 4px; text-transform: uppercase; }
+.timer-sep { font-size: 24px; font-weight: 700; color: var(--danger); align-self: flex-start; margin-top: 2px; }
+
+/* ===== VIDEO PREVIEW / CHAT DEMO ===== */
+.video-section { padding: 16px 16px 8px; }
+.video-card { background: var(--card); border-radius: var(--radius); padding: 20px; box-shadow: var(--shadow-sm); border: 1px solid var(--border); position: relative; overflow: hidden; }
+.video-label { font-size: 11px; font-weight: 700; color: var(--text3); text-transform: uppercase; letter-spacing: 1.2px; margin-bottom: 16px; }
+.chat-preview { background: linear-gradient(180deg, #e9f5ff 0%, #f0f8ff 100%); border-radius: var(--radius-sm); padding: 16px; min-height: 280px; position: relative; overflow: hidden; }
+.chat-msg { display: flex; align-items: flex-end; gap: 8px; margin-bottom: 12px; opacity: 0; transform: translateY(10px); animation: chatPop 0.4s ease forwards; }
+.chat-msg.bot { justify-content: flex-start; }
+.chat-msg.user { justify-content: flex-end; }
+.chat-bubble { padding: 10px 14px; border-radius: 18px; font-size: 13px; line-height: 1.4; max-width: 75%; word-break: break-word; }
+.chat-msg.bot .chat-bubble { background: #fff; color: var(--text); border-bottom-left-radius: 4px; box-shadow: 0 1px 4px rgba(0,0,0,0.06); }
+.chat-msg.user .chat-bubble { background: var(--accent); color: #fff; border-bottom-right-radius: 4px; }
+.chat-ava { width: 28px; height: 28px; border-radius: 50%; background: linear-gradient(135deg, var(--accent), var(--purple)); display: flex; align-items: center; justify-content: center; font-size: 12px; flex-shrink: 0; }
+.chat-ava.user { background: var(--bg); font-size: 14px; }
+.chat-typing { display: flex; gap: 4px; padding: 10px 14px; background: #fff; border-radius: 18px; border-bottom-left-radius: 4px; box-shadow: 0 1px 4px rgba(0,0,0,0.06); width: fit-content; }
+.chat-typing span { width: 6px; height: 6px; background: var(--text3); border-radius: 50%; animation: typingBounce 1s infinite; }
+.chat-typing span:nth-child(2) { animation-delay: 0.15s; }
+.chat-typing span:nth-child(3) { animation-delay: 0.3s; }
+@keyframes typingBounce { 0%,60%,100% { transform: translateY(0); } 30% { transform: translateY(-4px); } }
+@keyframes chatPop { to { opacity: 1; transform: translateY(0); } }
+.video-play { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); width: 56px; height: 56px; background: rgba(255,255,255,0.95); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 22px; box-shadow: 0 4px 20px rgba(0,0,0,0.15); cursor: pointer; z-index: 2; border: none; font-family: inherit; }
+.video-play:active { transform: translate(-50%,-50%) scale(0.92); }
+.video-overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.03); z-index: 1; pointer-events: none; }
+
+/* ===== FORM MODAL ===== */
+.form-modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.45); align-items: flex-end; justify-content: center; z-index: 100; max-width: 430px; margin: 0 auto; opacity: 0; transition: opacity 0.3s; }
+.form-modal.show { display: flex; opacity: 1; }
+.form-card { background: var(--card); width: 100%; padding: 28px 20px 32px; border-radius: var(--radius) var(--radius) 0 0; position: relative; animation: slideUp 0.35s cubic-bezier(0.16, 1, 0.3, 1); box-shadow: 0 -10px 40px rgba(0,0,0,0.12); }
+.form-title { font-size: 22px; font-weight: 800; margin-bottom: 6px; }
+.form-sub { font-size: 14px; color: var(--text2); margin-bottom: 20px; }
+.form-close { position: absolute; top: 14px; right: 16px; width: 44px; height: 44px; border-radius: 50%; background: var(--bg); font-size: 16px; cursor: pointer; color: var(--text3); display: flex; align-items: center; justify-content: center; border: none; font-family: inherit; transition: all 0.15s; }
+.form-close:active { background: #e5e5ea; transform: scale(0.9); }
+
+
+/* ===== PRICING CAROUSEL ===== */
+.pricing-section { padding: 16px 0 8px; }
+.pricing-scroll {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  padding: 4px 16px 16px;
+  scrollbar-width: none;
+}
+.pricing-scroll::-webkit-scrollbar { display: none; }
+.pricing-card {
+  flex: 0 0 280px;
+  scroll-snap-align: start;
+  padding: 22px 18px;
+  border-radius: var(--radius);
+  position: relative;
+  box-shadow: var(--shadow-sm);
+  transition: all 0.25s;
+  display: flex;
+  flex-direction: column;
+}
+.pricing-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
+.pricing-card:active { transform: scale(0.98); }
+.pricing-card.light { background: var(--card); border: 1px solid var(--border); }
+.pricing-card.dark { background: linear-gradient(135deg, #1c1c1e 0%, #2c2c2e 100%); color: #fff; box-shadow: 0 12px 40px rgba(0,0,0,0.25); border: 1px solid rgba(255,255,255,0.06); }
+.pricing-card.green { background: linear-gradient(135deg, #1a3a1a 0%, #2d5a2d 100%); color: #fff; box-shadow: 0 12px 40px rgba(52,199,89,0.2); border: 1px solid rgba(52,199,89,0.15); }
+.pricing-card.purple { background: linear-gradient(135deg, #2d1b4e 0%, #4a2c7a 100%); color: #fff; box-shadow: 0 12px 40px rgba(175,82,222,0.2); border: 1px solid rgba(175,82,222,0.15); }
+.pricing-badge { position: absolute; top: 0; right: 18px; padding: 5px 14px; background: linear-gradient(135deg, var(--accent), var(--purple)); color: #fff; font-size: 10px; font-weight: 700; border-radius: 0 0 12px 12px; box-shadow: 0 4px 12px rgba(0,122,255,0.25); }
+.pricing-badge.green { background: linear-gradient(135deg, var(--accent2), #2e7d32); box-shadow: 0 4px 12px rgba(52,199,89,0.25); }
+.pricing-badge.purple { background: linear-gradient(135deg, var(--purple), #7b1fa2); box-shadow: 0 4px 12px rgba(175,82,222,0.25); }
+.pricing-name { font-size: 18px; font-weight: 700; margin-bottom: 4px; }
+.pricing-price { font-size: 32px; font-weight: 800; margin-bottom: 10px; letter-spacing: -1px; }
+.pricing-desc { font-size: 13px; line-height: 1.5; margin-bottom: 16px; opacity: 0.85; flex-grow: 1; }
+.pricing-features { display: flex; flex-direction: column; gap: 8px; margin-bottom: 18px; }
+.feature { font-size: 13px; display: flex; align-items: flex-start; gap: 8px; line-height: 1.4; }
+.feature::before { content: "\2713"; font-weight: 700; color: var(--accent2); flex-shrink: 0; margin-top: 1px; }
+.pricing-card.dark .feature::before, .pricing-card.green .feature::before, .pricing-card.purple .feature::before { color: var(--accent2); }
+.pricing-btn {
+  width: 100%;
+  padding: 14px;
+  border: none;
+  border-radius: var(--radius-sm);
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: inherit;
+  transition: all 0.2s;
+  text-align: center;
+}
+.pricing-btn.light { background: linear-gradient(135deg, #007aff 0%, #0051d5 100%); color: #fff; box-shadow: 0 4px 16px rgba(0,122,255,0.25); }
+.pricing-btn.dark { background: #fff; color: var(--text); box-shadow: 0 4px 16px rgba(0,0,0,0.1); }
+.pricing-btn:active { transform: scale(0.97); }
+.pricing-dots {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  padding: 0 16px 8px;
+}
+.pricing-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--border);
+  transition: all 0.3s;
+}
+.pricing-dot.active {
+  width: 20px;
+  border-radius: 4px;
+  background: var(--accent);
+}
+</style>
+    <!-- Vercel Analytics -->
+    <script defer src="/_vercel/insights/script.js"></script>
+    <script defer src="/_vercel/speed-insights/script.js"></script>
+</head>
+<body>
+<div class="app">
+
+<!-- ===== PORTFOLIO VIEW ===== -->
+<div class="view active" id="view-portfolio">
+  <div class="view-scroll">
+    <div class="hero">
+      <div class="hero-badge">🚀 AI Business Automation</div>
+      <div class="hero-title">Автоматизируем бизнес через Telegram</div>
+      <div class="hero-sub">Помогаем малому бизнесу экономить время и получать клиентов 24/7</div>
+      <button class="hero-btn" onclick="document.getElementById('cases').scrollIntoView({behavior:'smooth'})">Посмотреть кейсы</button>
+      <div class="stats-row">
+        <div class="stat-item"><div class="stat-num">50+</div><div class="stat-label">проектов</div></div>
+        <div class="stat-item"><div class="stat-num">3</div><div class="stat-label">дня до запуска</div></div>
+        <div class="stat-item"><div class="stat-num">24/7</div><div class="stat-label">поддержка</div></div>
+      </div>
+    </div>
+    <div class="timer-block">
+      <div class="timer-label">🔥 Бесплатный анализ бизнеса — заканчивается через:</div>
+      <div class="timer-row">
+        <div class="timer-cell"><div class="timer-val" id="t-d">02</div><div class="timer-unit">дн</div></div>
+        <div class="timer-sep">:</div>
+        <div class="timer-cell"><div class="timer-val" id="t-h">14</div><div class="timer-unit">час</div></div>
+        <div class="timer-sep">:</div>
+        <div class="timer-cell"><div class="timer-val" id="t-m">35</div><div class="timer-unit">мин</div></div>
+        <div class="timer-sep">:</div>
+        <div class="timer-cell"><div class="timer-val" id="t-s">48</div><div class="timer-unit">сек</div></div>
+      </div>
+    </div>
+    <div class="section">
+      <div class="section-label">Что мы делаем</div>
+      <div class="service-row">
+        <div class="service-icon">🤖</div>
+        <div>
+          <div class="service-name">Telegram AI Assistant</div>
+          <div class="service-desc">Автоответы, частые вопросы, сбор заявок, консультации клиентов круглосуточно</div>
+        </div>
+      </div>
+      <div class="service-row">
+        <div class="service-icon">📱</div>
+        <div>
+          <div class="service-name">Telegram Mini App</div>
+          <div class="service-desc">Каталог, запись, меню, корзина, программа лояльности — всё внутри Telegram</div>
+        </div>
+      </div>
+      <div class="service-row">
+        <div class="service-icon">⚙️</div>
+        <div>
+          <div class="service-name">Автоматизация процессов</div>
+          <div class="service-desc">CRM, уведомления, база клиентов, напоминания, аналитика</div>
+        </div>
+      </div>
+    </div>
+    <div class="section" id="cases">
+      <div class="section-label">Наши кейсы</div>
+      <div class="case-card" onclick="openDemo('beauty')">
+        <div class="case-header">
+          <div class="case-icon">✨</div>
+          <div class="case-info">
+            <div class="case-name">Beauty Studio</div>
+            <div class="case-type">Салон красоты — Варшава</div>
+          </div>
+          <div class="case-arrow">→</div>
+        </div>
+        <div class="case-tags">
+          <span class="tag">Каталог услуг</span>
+          <span class="tag">Онлайн-запись</span>
+          <span class="tag">Частые вопросы</span>
+        </div>
+      </div>
+      <div class="case-card" onclick="openDemo('fitness')">
+        <div class="case-header">
+          <div class="case-icon">💪</div>
+          <div class="case-info">
+            <div class="case-name">FitPro</div>
+            <div class="case-type">Фитнес-клуб — Краков</div>
+          </div>
+          <div class="case-arrow">→</div>
+        </div>
+        <div class="case-tags">
+          <span class="tag">Расписание</span>
+          <span class="tag">Абонементы</span>
+          <span class="tag">Тренеры</span>
+        </div>
+      </div>
+      <div class="case-card" onclick="openDemo('cafe')">
+        <div class="case-header">
+          <div class="case-icon">☕</div>
+          <div class="case-info">
+            <div class="case-name">Coffee House</div>
+            <div class="case-type">Кафе — Вроцлав</div>
+          </div>
+          <div class="case-arrow">→</div>
+        </div>
+        <div class="case-tags">
+          <span class="tag">Меню</span>
+          <span class="tag">Корзина</span>
+          <span class="tag">Лояльность</span>
+        </div>
+      </div>
+    </div>
+    <!-- ===== PRICING CAROUSEL ===== -->
+    <div class="pricing-section">
+      <div class="section-label" style="padding-left:20px;">Тарифы</div>
+      <div class="pricing-scroll" id="pricing-scroll">
+        <div class="pricing-card light">
+          <div class="pricing-name">Старт</div>
+          <div class="pricing-price">20 $</div>
+          <div class="pricing-desc">Пробный бот с меню услуг. Идеально для старта и теста.</div>
+          <div class="pricing-features">
+            <div class="feature">Меню услуг</div>
+            <div class="feature">Контакты и адрес</div>
+            <div class="feature">Базовые автоответы</div>
+            <div class="feature">Настройка за 1 день</div>
+          </div>
+          <button class="pricing-btn light" onclick="openForm()">Выбрать</button>
+        </div>
+        <div class="pricing-card light">
+          <div class="pricing-name">AI Start</div>
+          <div class="pricing-price">50 $</div>
+          <div class="pricing-desc">Telegram-бот с автоответами, меню и сбором заявок.</div>
+          <div class="pricing-features">
+            <div class="feature">Всё из Старт</div>
+            <div class="feature">Автоответы клиентам</div>
+            <div class="feature">Сбор заявок</div>
+            <div class="feature">Рассылка акций</div>
+          </div>
+          <button class="pricing-btn light" onclick="openForm()">Выбрать</button>
+        </div>
+        <div class="pricing-card light">
+          <div class="pricing-name">AI Pro</div>
+          <div class="pricing-price">120 $</div>
+          <div class="pricing-desc">Умный бот с AI, онлайн-записью и Google Календарём.</div>
+          <div class="pricing-features">
+            <div class="feature">Всё из AI Start</div>
+            <div class="feature">AI-помощник 24/7</div>
+            <div class="feature">Онлайн-запись</div>
+            <div class="feature">Google Calendar</div>
+            <div class="feature">Уведомления</div>
+          </div>
+          <button class="pricing-btn light" onclick="openForm()">Выбрать</button>
+        </div>
+        <div class="pricing-card dark">
+          <div class="pricing-badge">Популярный</div>
+          <div class="pricing-name">Business</div>
+          <div class="pricing-price">250–350 $</div>
+          <div class="pricing-desc">Полноценный Mini App с CRM, аналитикой и автоматизацией.</div>
+          <div class="pricing-features">
+            <div class="feature">Всё из AI Pro</div>
+            <div class="feature">Telegram Mini App</div>
+            <div class="feature">База клиентов (CRM)</div>
+            <div class="feature">Аналитика и отчёты</div>
+            <div class="feature">Автоматизация процессов</div>
+            <div class="feature">Приоритетная поддержка</div>
+          </div>
+          <button class="pricing-btn dark" onclick="openForm()">Выбрать</button>
+        </div>
+        <div class="pricing-card green">
+          <div class="pricing-badge green">Для сети</div>
+          <div class="pricing-name">Enterprise</div>
+          <div class="pricing-price">500 $+</div>
+          <div class="pricing-desc">Масштабное решение для нескольких точек и франшиз.</div>
+          <div class="pricing-features">
+            <div class="feature">Всё из Business</div>
+            <div class="feature">Мульти-точки</div>
+            <div class="feature">Франшиза / филиалы</div>
+            <div class="feature">API интеграции</div>
+            <div class="feature">Персональный менеджер</div>
+            <div class="feature">SLA гарантии</div>
+          </div>
+          <button class="pricing-btn dark" onclick="openForm()">Обсудить</button>
+        </div>
+      </div>
+      <div class="pricing-dots" id="pricing-dots">
+        <div class="pricing-dot active"></div>
+        <div class="pricing-dot"></div>
+        <div class="pricing-dot"></div>
+        <div class="pricing-dot"></div>
+        <div class="pricing-dot"></div>
+      </div>
+    </div>
+    <div class="section">
+      <div class="section-label">Как это работает</div>
+      <div class="steps">
+        <div class="step"><div class="step-num">1</div><div class="step-text">Вы пишете нам — мы анализируем ваш бизнес</div></div>
+        <div class="step"><div class="step-num">2</div><div class="step-text">Показываем демо и предлагаем решение</div></div>
+        <div class="step"><div class="step-num">3</div><div class="step-text">Разрабатываем за 1–3 дня</div></div>
+        <div class="step"><div class="step-num">4</div><div class="step-text">Запускаем и обучаем персонал</div></div>
+      </div>
+    </div>
+    <div class="section">
+      <div class="section-label">Отзывы клиентов</div>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <div class="review-text">«Бот сделал запись в салон полностью автоматической. Теперь клиенты записываются ночью, а я утром вижу расписание.»</div>
+        <div class="review-author">Анна К.</div>
+        <div class="review-role">Владелица Beauty Studio, Варшава</div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <div class="review-text">«За 2 дня получили полноценное приложение для кафе. Заказы выросли на 30% за первый месяц.»</div>
+        <div class="review-author">Марек П.</div>
+        <div class="review-role">Владелец Coffee House, Вроцлав</div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <div class="review-text">«AI-ассистент отвечает на вопросы клиентов быстрее, чем я. Экономит 3 часа в день.»</div>
+        <div class="review-author">Игорь С.</div>
+        <div class="review-role">Тренер FitPro, Краков</div>
+      </div>
+    </div>
+    <div class="video-section">
+      <div class="video-label">Как это работает</div>
+      <div class="video-card">
+        <div class="chat-preview" id="chat-preview">
+          <div class="video-overlay"></div>
+          <div class="chat-msg bot" style="animation-delay:0.3s"><div class="chat-ava">🤖</div><div class="chat-bubble">Привет! Я твой AI-ассистент. Чем могу помочь?</div></div>
+          <div class="chat-msg user" style="animation-delay:1.2s"><div class="chat-bubble">Хочу записаться на стрижку завтра в 15:00</div></div>
+          <div class="chat-msg bot" style="animation-delay:2.1s"><div class="chat-ava">🤖</div><div class="chat-bubble">Конечно! У Анны есть свободное место. Подтверждаю запись?</div></div>
+          <div class="chat-msg user" style="animation-delay:3.0s"><div class="chat-bubble">Да, подтверждаю</div></div>
+          <div class="chat-msg bot" style="animation-delay:3.9s"><div class="chat-ava">🤖</div><div class="chat-bubble">✅ Запись подтверждена! До встречи завтра в 15:00.</div></div>
+          <div class="chat-typing" id="chat-typing" style="opacity:0; animation: chatPop 0.3s ease 4.8s forwards;"><span></span><span></span><span></span></div>
+        </div>
+      </div>
+    </div>
+    <div class="cta-section">
+      <div class="cta-title">Готовы автоматизировать бизнес?</div>
+      <div class="cta-sub">Получите бесплатный анализ и демо под вашу нишу</div>
+      <a href="https://t.me/Dasceem" target="_blank" class="cta-btn" style="text-decoration:none;display:inline-flex;">
+        <span>💬</span> Написать в Telegram
+      </a>
+    </div>
+    <div class="footer">
+      <div class="footer-text">AI Business Automation Agency</div>
+      <div class="footer-sub">Работаем с малым бизнесом в Польше, Беларуси и Европе</div>
+      <a href="https://t.me/Dasceem" target="_blank" class="footer-tg">📨 @Dasceem</a>
+    </div>
+  </div>
+</div>
+
+<!-- ===== BEAUTY DEMO ===== -->
+<div class="view" id="view-beauty">
+  <div class="view-scroll">
+    <div class="demo-header">
+      <button class="demo-back" onclick="backToPortfolio()">←</button>
+      <div>
+        <div class="demo-title">✨ Beauty Studio</div>
+        <div class="demo-sub">AI-ассистент салона</div>
+      </div>
+    </div>
+    <div class="demo-screen active" id="b-screen-services">
+      <div class="demo-section-title">Услуги</div>
+      <div class="service-card" onclick="bDetail('Стрижка','120 zl','30 мин','Профессиональная стрижка с учётом типа волос и формы лица.')">
+        <div><div class="s-name">Стрижка</div><div class="s-desc">Женская / мужская / детская</div></div>
+        <div class="s-price">120 zl</div>
+      </div>
+      <div class="service-card" onclick="bDetail('Окрашивание','250 zl','90 мин','Окрашивание любой сложности премиум красками.')">
+        <div><div class="s-name">Окрашивание</div><div class="s-desc">Полное / мелирование / тонирование</div></div>
+        <div class="s-price">250 zl</div>
+      </div>
+      <div class="service-card" onclick="bDetail('Маникюр','90 zl','45 мин','Классический и аппаратный маникюр с покрытием гель-лак.')">
+        <div><div class="s-name">Маникюр</div><div class="s-desc">Классический / аппаратный / гель-лак</div></div>
+        <div class="s-price">90 zl</div>
+      </div>
+      <div class="service-card" onclick="bDetail('Педикюр','110 zl','60 мин','SPA-педикюр с расслабляющим массажем стоп.')">
+        <div><div class="s-name">Педикюр</div><div class="s-desc">Классический / SPA / гель-лак</div></div>
+        <div class="s-price">110 zl</div>
+      </div>
+      <div class="service-card" onclick="bDetail('Укладка','80 zl','40 мин','Праздничная и повседневная укладка любой сложности.')">
+        <div><div class="s-name">Укладка</div><div class="s-desc">Повседневная / вечерняя / свадебная</div></div>
+        <div class="s-price">80 zl</div>
+      </div>
+    </div>
+    <div class="demo-screen" id="b-screen-booking">
+      <div class="demo-section-title">Запись на услугу</div>
+      <div class="form-group"><label>Ваше имя</label><input type="text" placeholder="Анна" id="b-name"></div>
+      <div class="form-group"><label>Телефон</label><input type="tel" placeholder="+48 500 000 000" id="b-phone"></div>
+      <div class="form-group"><label>Услуга</label>
+        <select id="b-service"><option>Стрижка — 120 zl</option><option>Окрашивание — 250 zl</option><option>Маникюр — 90 zl</option><option>Педикюр — 110 zl</option><option>Укладка — 80 zl</option></select>
+      </div>
+      <div class="form-group"><label>Дата</label><input type="date" id="b-date"></div>
+      <div class="form-group"><label>Время</label>
+        <div class="time-grid">
+          <div class="time-slot" onclick="bTime(this)">10:00</div>
+          <div class="time-slot" onclick="bTime(this)">11:00</div>
+          <div class="time-slot selected" onclick="bTime(this)">12:00</div>
+          <div class="time-slot" onclick="bTime(this)">13:00</div>
+          <div class="time-slot" onclick="bTime(this)">14:00</div>
+          <div class="time-slot" onclick="bTime(this)">15:00</div>
+          <div class="time-slot" onclick="bTime(this)">16:00</div>
+          <div class="time-slot" onclick="bTime(this)">17:00</div>
+        </div>
+      </div>
+      <button class="btn-p" onclick="bSubmit()">Записаться</button>
+      <div class="success-msg" id="b-success">✅ Запись подтверждена! Мы свяжемся с вами.</div>
+    </div>
+    <div class="demo-screen" id="b-screen-faq">
+      <div class="demo-section-title">Частые вопросы</div>
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q">Как записаться? <span class="faq-arr">▼</span></div>
+        <div class="faq-a">Нажмите «Запись», выберите услугу, дату и время. Мы подтвердим за 15 минут.</div>
+      </div>
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q">Можно отменить? <span class="faq-arr">▼</span></div>
+        <div class="faq-a">Отмена бесплатна за 24 часа. Позже — удерживается 50%.</div>
+      </div>
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q">Способы оплаты? <span class="faq-arr">▼</span></div>
+        <div class="faq-a">Наличные, карта, BLIK. Можно оплатить через бот.</div>
+      </div>
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q">Есть скидки? <span class="faq-arr">▼</span></div>
+        <div class="faq-a">Скидка 10% на первый визит. Каждая 6-я стрижка бесплатно.</div>
+      </div>
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q">Работаете в выходные? <span class="faq-arr">▼</span></div>
+        <div class="faq-a">Суббота и воскресенье с 10:00 до 16:00. Запись онлайн 24/7.</div>
+      </div>
+      <div class="contact-block">
+        <div class="contact-title">Не нашли ответ?</div>
+        <div class="contact-text">AI-ассистент ответит за 1 минуту</div>
+        <a href="https://t.me/Dasceem" target="_blank" class="btn-o" style="text-decoration:none;display:block;text-align:center;">Написать в чат</a>
+      </div>
+    </div>
+  </div>
+  <div class="bottom-nav">
+    <div class="nav-item active" onclick="bTab('services',this)">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
+      <span>Услуги</span>
+    </div>
+    <div class="nav-item" onclick="bTab('booking',this)">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+      <span>Запись</span>
+    </div>
+    <div class="nav-item" onclick="bTab('faq',this)">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+      <span>Вопросы</span>
+    </div>
+  </div>
+  <div class="detail-modal" id="b-modal" onclick="if(event.target===this)bClose()">
+    <div class="detail-card">
+      <button class="detail-close" onclick="bClose()">✕</button>
+      <div class="detail-title" id="b-d-title"></div>
+      <div class="detail-meta"><span class="d-price" id="b-d-price"></span><span class="d-time" id="b-d-time"></span></div>
+      <div class="d-desc" id="b-d-desc"></div>
+      <button class="btn-p" onclick="bClose();bTab('booking',document.querySelectorAll('#view-beauty .nav-item')[1])">Записаться</button>
+    </div>
+  </div>
+</div>
+
+<!-- ===== FITNESS DEMO ===== -->
+<div class="view" id="view-fitness">
+  <div class="view-scroll">
+    <div class="demo-header">
+      <button class="demo-back" onclick="backToPortfolio()">←</button>
+      <div>
+        <div class="demo-title">💪 FitPro</div>
+        <div class="demo-sub">AI-ассистент тренера</div>
+      </div>
+    </div>
+    <div class="demo-screen active" id="f-screen-schedule">
+      <div class="demo-section-title">Расписание на сегодня</div>
+      <div class="schedule-card"><div class="sc-time">10:00</div><div class="sc-info"><div class="sc-name">Йога для начинающих</div><div class="sc-meta">Тренер: Анна • 8/12 мест</div></div><button class="btn-s" onclick="fBook(this)">Записаться</button></div>
+      <div class="schedule-card"><div class="sc-time">12:00</div><div class="sc-info"><div class="sc-name">Силовая тренировка</div><div class="sc-meta">Тренер: Максим • 5/10 мест</div></div><button class="btn-s" onclick="fBook(this)">Записаться</button></div>
+      <div class="schedule-card"><div class="sc-time">14:00</div><div class="sc-info"><div class="sc-name">Кроссфит</div><div class="sc-meta">Тренер: Игорь • 3/8 мест</div></div><button class="btn-s" onclick="fBook(this)">Записаться</button></div>
+      <div class="schedule-card"><div class="sc-time">16:00</div><div class="sc-info"><div class="sc-name">Пилатес</div><div class="sc-meta">Тренер: Анна • 10/12 мест</div></div><button class="btn-s" onclick="fBook(this)">Записаться</button></div>
+      <div class="schedule-card"><div class="sc-time">18:00</div><div class="sc-info"><div class="sc-name">HIIT</div><div class="sc-meta">Тренер: Максим • 6/10 мест</div></div><button class="btn-s" onclick="fBook(this)">Записаться</button></div>
+      <div class="schedule-card"><div class="sc-time">20:00</div><div class="sc-info"><div class="sc-name">Растяжка</div><div class="sc-meta">Тренер: Игорь • 7/8 мест</div></div><button class="btn-s" onclick="fBook(this)">Записаться</button></div>
+    </div>
+    <div class="demo-screen" id="f-screen-trainers">
+      <div class="demo-section-title">Наши тренеры</div>
+      <div class="trainer-card" onclick="fTrainer('Анна','Йога, Пилатес','5 лет','120 zl/час','Специалист по йоге и пилатесу. Помогает найти баланс и гибкость.')">
+        <div class="t-ava">👩</div><div class="t-info"><div class="t-name">Анна</div><div class="t-spec">Йога, Пилатес</div><div class="t-exp">5 лет опыта</div></div><div class="t-price">120 zl</div>
+      </div>
+      <div class="trainer-card" onclick="fTrainer('Максим','Силовые, HIIT','7 лет','140 zl/час','Персональный тренер по силовым и функциональным тренировкам.')">
+        <div class="t-ava">👨</div><div class="t-info"><div class="t-name">Максим</div><div class="t-spec">Силовые, HIIT</div><div class="t-exp">7 лет опыта</div></div><div class="t-price">140 zl</div>
+      </div>
+      <div class="trainer-card" onclick="fTrainer('Игорь','Кроссфит, Растяжка','4 года','130 zl/час','Тренер по кроссфиту и мобильности. Работает с атлетами всех уровней.')">
+        <div class="t-ava">🧑</div><div class="t-info"><div class="t-name">Игорь</div><div class="t-spec">Кроссфит, Растяжка</div><div class="t-exp">4 года опыта</div></div><div class="t-price">130 zl</div>
+      </div>
+      <div class="pass-block">
+        <div class="demo-section-title">Абонементы</div>
+        <div class="pass-card"><div class="pass-name">8 занятий</div><div class="pass-price">400 zl <span class="pass-old">480 zl</span></div><div class="pass-desc">Действует 30 дней</div></div>
+        <div class="pass-card"><div class="pass-name">12 занятий</div><div class="pass-price">540 zl <span class="pass-old">720 zl</span></div><div class="pass-desc">Действует 45 дней</div></div>
+        <div class="pass-card"><div class="pass-name">Безлимит</div><div class="pass-price">700 zl <span class="pass-old">900 zl</span></div><div class="pass-desc">Действует 30 дней</div></div>
+      </div>
+    </div>
+    <div class="demo-screen" id="f-screen-faq">
+      <div class="demo-section-title">Частые вопросы</div>
+      <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q">Как записаться? <span class="faq-arr">▼</span></div><div class="faq-a">Выберите тренировку в расписании и нажмите «Записаться». Подтверждение придёт в Telegram.</div></div>
+      <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q">Что взять с собой? <span class="faq-arr">▼</span></div><div class="faq-a">Спортивная одежда, кроссовки, полотенце и бутылка воды. Мы предоставляем коврики.</div></div>
+      <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q">Заморозка абонемента? <span class="faq-arr">▼</span></div><div class="faq-a">Да, до 14 дней. Напишите в чат — AI-ассистент оформит.</div></div>
+      <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q">Пробное занятие? <span class="faq-arr">▼</span></div><div class="faq-a">Первое занятие бесплатно. Запишитесь через бот.</div></div>
+      <div class="contact-block">
+        <div class="contact-title">Нужна помощь?</div>
+        <div class="contact-text">AI-ассистент ответит за 1 минуту</div>
+        <a href="https://t.me/Dasceem" target="_blank" class="btn-o" style="text-decoration:none;display:block;text-align:center;">Написать в чат</a>
+      </div>
+    </div>
+  </div>
+  <div class="bottom-nav">
+    <div class="nav-item active" onclick="fTab('schedule',this)">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+      <span>Расписание</span>
+    </div>
+    <div class="nav-item" onclick="fTab('trainers',this)">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+      <span>Тренеры</span>
+    </div>
+    <div class="nav-item" onclick="fTab('faq',this)">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+      <span>Вопросы</span>
+    </div>
+  </div>
+  <div class="detail-modal" id="f-modal" onclick="if(event.target===this)fClose()">
+    <div class="detail-card">
+      <button class="detail-close" onclick="fClose()">✕</button>
+      <div class="detail-title" id="f-t-title"></div>
+      <div class="detail-meta"><span class="d-price" id="f-t-spec"></span><span class="d-time" id="f-t-exp"></span></div>
+      <div class="d-desc" id="f-t-desc"></div>
+      <div class="d-price-big" id="f-t-price"></div>
+      <button class="btn-p" onclick="fClose()">Записаться к тренеру</button>
+    </div>
+  </div>
+</div>
+
+<!-- ===== CAFE DEMO ===== -->
+<div class="view" id="view-cafe">
+  <div class="view-scroll">
+    <div class="demo-header">
+      <button class="demo-back" onclick="backToPortfolio()">←</button>
+      <div>
+        <div class="demo-title">☕ Coffee House</div>
+        <div class="demo-sub">Заказывай прямо в Telegram</div>
+      </div>
+    </div>
+    <div class="demo-screen active" id="c-screen-menu">
+      <div class="cat-tabs">
+        <div class="cat-tab active" onclick="cFilter('all',this)">Все</div>
+        <div class="cat-tab" onclick="cFilter('coffee',this)">Кофе</div>
+        <div class="cat-tab" onclick="cFilter('food',this)">Еда</div>
+        <div class="cat-tab" onclick="cFilter('dessert',this)">Десерты</div>
+      </div>
+      <div class="menu-item" data-cat="coffee">
+        <div class="m-img">☕</div><div class="m-info"><div class="m-name">Эспрессо</div><div class="m-desc">Классический итальянский кофе</div><div class="m-price">12 zl</div></div>
+        <button class="m-add" onclick="cAdd('Эспрессо',12)">+</button>
+      </div>
+      <div class="menu-item" data-cat="coffee">
+        <div class="m-img">🥛</div><div class="m-info"><div class="m-name">Капучино</div><div class="m-desc">С нежной молочной пенкой</div><div class="m-price">16 zl</div></div>
+        <button class="m-add" onclick="cAdd('Капучино',16)">+</button>
+      </div>
+      <div class="menu-item" data-cat="coffee">
+        <div class="m-img">🧊</div><div class="m-info"><div class="m-name">Айс Латте</div><div class="m-desc">Освежающий холодный кофе</div><div class="m-price">18 zl</div></div>
+        <button class="m-add" onclick="cAdd('Айс Латте',18)">+</button>
+      </div>
+      <div class="menu-item" data-cat="food">
+        <div class="m-img">🥐</div><div class="m-info"><div class="m-name">Круассан</div><div class="m-desc">Сливочный, слоёный</div><div class="m-price">14 zl</div></div>
+        <button class="m-add" onclick="cAdd('Круассан',14)">+</button>
+      </div>
+      <div class="menu-item" data-cat="food">
+        <div class="m-img">🥪</div><div class="m-info"><div class="m-name">Сэндвич с курицей</div><div class="m-desc">Свежие овощи и соус</div><div class="m-price">22 zl</div></div>
+        <button class="m-add" onclick="cAdd('Сэндвич с курицей',22)">+</button>
+      </div>
+      <div class="menu-item" data-cat="food">
+        <div class="m-img">🥗</div><div class="m-info"><div class="m-name">Салат Цезарь</div><div class="m-desc">Курица, пармезан, соус</div><div class="m-price">28 zl</div></div>
+        <button class="m-add" onclick="cAdd('Салат Цезарь',28)">+</button>
+      </div>
+      <div class="menu-item" data-cat="dessert">
+        <div class="m-img">🍰</div><div class="m-info"><div class="m-name">Чизкейк</div><div class="m-desc">Нью-Йорк классический</div><div class="m-price">19 zl</div></div>
+        <button class="m-add" onclick="cAdd('Чизкейк',19)">+</button>
+      </div>
+      <div class="menu-item" data-cat="dessert">
+        <div class="m-img">🍫</div><div class="m-info"><div class="m-name">Тирамису</div><div class="m-desc">Итальянский десерт</div><div class="m-price">21 zl</div></div>
+        <button class="m-add" onclick="cAdd('Тирамису',21)">+</button>
+      </div>
+    </div>
+    <div class="demo-screen" id="c-screen-cart">
+      <div class="demo-section-title">Корзина</div>
+      <div id="c-items"><div class="cart-empty">Корзина пуста. Добавьте блюда из меню ☕</div></div>
+      <div class="cart-total" id="c-total" style="display:none">
+        <div class="tr"><span>Сумма</span><span id="c-sum">0 zl</span></div>
+        <div class="tr"><span>Доставка</span><span>Бесплатно</span></div>
+        <div class="tr tf"><span>Итого</span><span id="c-final">0 zl</span></div>
+        <button class="btn-p" onclick="cOrder()">Оформить заказ</button>
+      </div>
+      <div class="success-msg" id="c-success">✅ Заказ принят! Готовим для вас.</div>
+    </div>
+    <div class="demo-screen" id="c-screen-loyalty">
+      <div class="demo-section-title">Программа лояльности</div>
+      <div class="loyalty-card">
+        <div class="lh"><div class="lt">Coffee Card</div><div class="ls">⭐ 7 / 10</div></div>
+        <div class="pb"><div class="pf" style="width:70%"></div></div>
+        <div class="pt">Ещё 3 напитка — бесплатный кофе!</div>
+      </div>
+      <div class="demo-section-title" style="margin-top:20px">Акции</div>
+      <div class="promo-card"><div class="promo-tag">-20%</div><div class="promo-text">Скидка 20% на всё меню с 14:00 до 16:00</div></div>
+      <div class="promo-card"><div class="promo-tag">1+1</div><div class="promo-text">Второй кофе бесплатно по выходным</div></div>
+      <div class="promo-card"><div class="promo-tag">-10%</div><div class="promo-text">Скидка на первый заказ через бот</div></div>
+      <div class="faq-item" onclick="toggleFaq(this)" style="margin-top:16px">
+        <div class="faq-q">Как работает лояльность? <span class="faq-arr">▼</span></div>
+        <div class="faq-a">За каждый напиток — 1 звезда. 10 звёзд = бесплатный напиток.</div>
+      </div>
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q">Как получить заказ? <span class="faq-arr">▼</span></div>
+        <div class="faq-a">Самовывоз или доставка. Среднее время — 15 минут.</div>
+      </div>
+    </div>
+  </div>
+  <div class="bottom-nav">
+    <div class="nav-item active" onclick="cTab('menu',this)">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 3h18v18H3zM9 3v18"/></svg>
+      <span>Меню</span>
+    </div>
+    <div class="nav-item" onclick="cTab('cart',this)">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+      <span>Корзина</span>
+    </div>
+    <div class="nav-item" onclick="cTab('loyalty',this)">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+      <span>Акции</span>
+    </div>
+  </div>
+  <div class="cart-badge" id="c-badge" onclick="cTab('cart',document.querySelectorAll('#view-cafe .nav-item')[1])">0</div>
+</div>
+
+<a href="https://t.me/Dasceem" target="_blank" class="tg-float" title="Напишите нам в Telegram">✈️</a>
+
+</div>
+
+<!-- ===== FORM MODAL ===== -->
+<div class="form-modal" id="form-modal" onclick="if(event.target===this)closeForm()">
+  <div class="form-card">
+    <button class="form-close" onclick="closeForm()">✕</button>
+    <div class="form-title">Оставить заявку</div>
+    <div class="form-sub">Ответим в течение 15 минут</div>
+    <div class="form-group"><label>Ваше имя</label><input type="text" placeholder="Анна" id="f-name"></div>
+    <div class="form-group"><label>Телефон</label><input type="tel" placeholder="+48 500 000 000" id="f-phone"></div>
+    <div class="form-group"><label>Ниша</label>
+      <select id="f-niche">
+        <option>Салон красоты / парикмахерская</option>
+        <option>Фитнес / спортзал</option>
+        <option>Кафе / ресторан</option>
+        <option>Магазин / e-commerce</option>
+        <option>Другая</option>
+      </select>
+    </div>
+    <button class="btn-p" onclick="submitForm()">Отправить заявку</button>
+    <div class="success-msg" id="f-success">✅ Отправлено! Открываем Telegram...</div>
+  </div>
+</div>
+
+<script>
+// ===== NAVIGATION =====
+function openDemo(name) {
+  document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+  const target = document.getElementById('view-' + name);
+  target.classList.add('active');
+  const scrollEl = target.querySelector('.view-scroll');
+  if(scrollEl) scrollEl.scrollTop = 0;
+}
+function backToPortfolio() {
+  document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+  const target = document.getElementById('view-portfolio');
+  target.classList.add('active');
+  const scrollEl = target.querySelector('.view-scroll');
+  if(scrollEl) scrollEl.scrollTop = 0;
+}
+function toggleFaq(el) { el.classList.toggle('open'); }
+
+// ===== BEAUTY =====
+function bTab(tab, el) {
+  document.querySelectorAll('#view-beauty .demo-screen').forEach(s => s.classList.remove('active'));
+  document.getElementById('b-screen-' + tab).classList.add('active');
+  document.querySelectorAll('#view-beauty .nav-item').forEach(n => n.classList.remove('active'));
+  el.classList.add('active');
+  const scrollEl = document.querySelector('#view-beauty .view-scroll');
+  if(scrollEl) scrollEl.scrollTop = 0;
+}
+function bTime(el) {
+  document.querySelectorAll('#view-beauty .time-slot').forEach(t => t.classList.remove('selected'));
+  el.classList.add('selected');
+}
+function bDetail(name, price, time, desc) {
+  document.getElementById('b-d-title').textContent = name;
+  document.getElementById('b-d-price').textContent = price;
+  document.getElementById('b-d-time').textContent = time;
+  document.getElementById('b-d-desc').textContent = desc;
+  document.getElementById('b-modal').classList.add('show');
+}
+function bClose() { document.getElementById('b-modal').classList.remove('show'); }
+function bSubmit() {
+  if (!document.getElementById('b-name').value || !document.getElementById('b-phone').value) {
+    alert('Заполните имя и телефон'); return;
+  }
+  document.getElementById('b-success').style.display = 'block';
+  setTimeout(() => document.getElementById('b-success').style.display = 'none', 3000);
+}
+
+// ===== FITNESS =====
+function fTab(tab, el) {
+  document.querySelectorAll('#view-fitness .demo-screen').forEach(s => s.classList.remove('active'));
+  document.getElementById('f-screen-' + tab).classList.add('active');
+  document.querySelectorAll('#view-fitness .nav-item').forEach(n => n.classList.remove('active'));
+  el.classList.add('active');
+  const scrollEl = document.querySelector('#view-fitness .view-scroll');
+  if(scrollEl) scrollEl.scrollTop = 0;
+}
+function fBook(btn) {
+  btn.textContent = '✓ Записан';
+  btn.classList.add('booked');
+  setTimeout(() => { btn.textContent = 'Записаться'; btn.classList.remove('booked'); }, 2000);
+}
+function fTrainer(name, spec, exp, price, desc) {
+  document.getElementById('f-t-title').textContent = name;
+  document.getElementById('f-t-spec').textContent = spec;
+  document.getElementById('f-t-exp').textContent = exp;
+  document.getElementById('f-t-price').textContent = price;
+  document.getElementById('f-t-desc').textContent = desc;
+  document.getElementById('f-modal').classList.add('show');
+}
+function fClose() { document.getElementById('f-modal').classList.remove('show'); }
+
+// ===== CAFE =====
+let cCart = [];
+function cTab(tab, el) {
+  document.querySelectorAll('#view-cafe .demo-screen').forEach(s => s.classList.remove('active'));
+  document.getElementById('c-screen-' + tab).classList.add('active');
+  document.querySelectorAll('#view-cafe .nav-item').forEach(n => n.classList.remove('active'));
+  el.classList.add('active');
+  const scrollEl = document.querySelector('#view-cafe .view-scroll');
+  if(scrollEl) scrollEl.scrollTop = 0;
+}
+function cFilter(cat, el) {
+  document.querySelectorAll('#view-cafe .cat-tab').forEach(t => t.classList.remove('active'));
+  el.classList.add('active');
+  document.querySelectorAll('#view-cafe .menu-item').forEach(item => {
+    item.style.display = (cat === 'all' || item.dataset.cat === cat) ? 'flex' : 'none';
+  });
+}
+function cAdd(name, price) {
+  const existing = cCart.find(c => c.name === name);
+  if (existing) existing.qty++; else cCart.push({ name, price, qty: 1 });
+  cUpdate();
+}
+function cRemove(name) {
+  const idx = cCart.findIndex(c => c.name === name);
+  if (idx > -1) { cCart[idx].qty--; if (cCart[idx].qty <= 0) cCart.splice(idx, 1); }
+  cUpdate();
+}
+function cUpdate() {
+  const badge = document.getElementById('c-badge');
+  const totalQty = cCart.reduce((s, c) => s + c.qty, 0);
+  badge.textContent = totalQty;
+  badge.style.display = totalQty > 0 ? 'flex' : 'none';
+  const container = document.getElementById('c-items');
+  const totalBlock = document.getElementById('c-total');
+  if (cCart.length === 0) {
+    container.innerHTML = '<div class="cart-empty">Корзина пуста. Добавьте блюда из меню ☕</div>';
+    totalBlock.style.display = 'none'; return;
+  }
+  let html = '', sum = 0;
+  cCart.forEach(item => {
+    sum += item.price * item.qty;
+    const safeName = item.name.replace(/"/g, '&quot;');
+    html += '<div class="cart-item">' +
+      '<div class="ci-info"><div class="ci-name">' + safeName + '</div>' +
+      '<div class="ci-price">' + item.price + ' zl x ' + item.qty + '</div></div>' +
+      '<div class="cq">' +
+      '<button class="qb" onclick="cRemove(&quot;' + safeName + '&quot;)">−</button>' +
+      '<span>' + item.qty + '</span>' +
+      '<button class="qb" onclick="cAdd(&quot;' + safeName + '&quot;,' + item.price + ')">+</button>' +
+      '</div></div>';
+  });
+  container.innerHTML = html;
+  totalBlock.style.display = 'block';
+  document.getElementById('c-sum').textContent = sum + ' zl';
+  document.getElementById('c-final').textContent = sum + ' zl';
+}
+function cOrder() {
+  if (cCart.length === 0) return;
+  document.getElementById('c-success').style.display = 'block';
+  cCart = []; cUpdate();
+  setTimeout(() => document.getElementById('c-success').style.display = 'none', 3000);
+}
+
+// ===== TIMER =====
+(function(){
+  const end = new Date();
+  end.setDate(end.getDate() + 2);
+  end.setHours(end.getHours() + 14);
+  function updateTimer(){
+    const now = new Date();
+    let diff = end - now;
+    if(diff < 0) diff = 0;
+    const d = Math.floor(diff / 86400000);
+    const h = Math.floor((diff % 86400000) / 3600000);
+    const m = Math.floor((diff % 3600000) / 60000);
+    const s = Math.floor((diff % 60000) / 1000);
+    const el = (id, v) => { const e = document.getElementById(id); if(e) e.textContent = String(v).padStart(2,'0'); };
+    el('t-d', d); el('t-h', h); el('t-m', m); el('t-s', s);
+  }
+  updateTimer();
+  setInterval(updateTimer, 1000);
+})();
+
+// ===== FORM =====
+function openForm() { document.getElementById('form-modal').classList.add('show'); }
+function closeForm() { document.getElementById('form-modal').classList.remove('show'); }
+function submitForm() {
+  const name = document.getElementById('f-name').value.trim();
+  const phone = document.getElementById('f-phone').value.trim();
+  const niche = document.getElementById('f-niche').value;
+  if(!name || !phone) { alert('Заполните имя и телефон'); return; }
+  const msg = 'Заявка с портфолио%0A%0AВаше имя: ' + encodeURIComponent(name) + '%0AТелефон: ' + encodeURIComponent(phone) + '%0AНиша: ' + encodeURIComponent(niche);
+  document.getElementById('f-success').style.display = 'block';
+  setTimeout(() => {
+    window.open('https://t.me/Dasceem?text=' + msg, '_blank');
+    closeForm();
+    document.getElementById('f-success').style.display = 'none';
+  }, 1200);
+}
+
+// ===== CHAT DEMO LOOP =====
+(function(){
+  const preview = document.getElementById('chat-preview');
+  if(!preview) return;
+  const msgs = preview.querySelectorAll('.chat-msg');
+  const typing = document.getElementById('chat-typing');
+  function restartChat() {
+    msgs.forEach(m => { m.style.animation = 'none'; m.style.opacity = '0'; m.style.transform = 'translateY(10px)'; });
+    if(typing) { typing.style.animation = 'none'; typing.style.opacity = '0'; }
+    void preview.offsetWidth;
+    msgs.forEach((m, i) => { m.style.animation = 'chatPop 0.4s ease forwards'; m.style.animationDelay = (0.3 + i*0.9) + 's'; });
+    if(typing) { typing.style.animation = 'chatPop 0.3s ease forwards'; typing.style.animationDelay = '4.8s'; }
+  }
+  setInterval(restartChat, 7000);
+})();
+
+// ===== PRICING CAROUSEL DOTS =====
+(function(){
+  const scrollEl = document.getElementById('pricing-scroll');
+  const dots = document.querySelectorAll('#pricing-dots .pricing-dot');
+  if(!scrollEl || dots.length === 0) return;
+  const cardWidth = 292; // 280px + 12px gap
+  function updateDots(){
+    const scrollLeft = scrollEl.scrollLeft;
+    const index = Math.round(scrollLeft / cardWidth);
+    dots.forEach((d, i) => d.classList.toggle('active', i === index));
+  }
+  scrollEl.addEventListener('scroll', updateDots, { passive: true });
+})();
+</script>
+</body>
+</html>
